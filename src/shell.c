@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include "HeronConfig.h"
 
 #define LOGO_BUFFER 32
 #define LINE_BUFFER 1024
@@ -16,6 +17,7 @@ void logo()
     c[i] = 0;
     printf("%s", c);
   }
+  printf("Heron Shell Version %d.%d\n", Heron_VERSION_MAJOR, Heron_VERSION_MINOR);
 }
 
 

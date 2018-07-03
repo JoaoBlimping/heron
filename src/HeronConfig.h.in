@@ -1,0 +1,3 @@
+// the configured options and settings for Tutorial
+#define Heron_VERSION_MAJOR @Heron_VERSION_MAJOR@
+#define Heron_VERSION_MINOR @Heron_VERSION_MINOR@
