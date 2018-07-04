@@ -94,3 +94,17 @@ void *LinkedList_remove(struct LinkedList *list, int index)
   free(target);
   return item;
 }
+
+
+int LinkedList_size(struct LinkedList *list)
+{
+  if (list->start == NULL) return 0;
+  struct Node *node = list->start;
+  int i = 1;
+  while (node->next != NULL)
+  {
+    node = node->next;
+    i++;
+  }
+  return i;
+}

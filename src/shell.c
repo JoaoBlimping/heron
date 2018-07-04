@@ -1,13 +1,14 @@
+#include "HeronConfig.h"
+#include "logo.h"
+#include "LinkedList.h"
+#include "parse.h"
+#include "execution.h"
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "HeronConfig.h"
-#include "logo.h"
 
-#define LOGO_BUFFER 32
+
 #define LINE_BUFFER 1024
-
-
 
 
 void readFile(char *buffer, int bufferLength, int source)
@@ -16,6 +17,7 @@ void readFile(char *buffer, int bufferLength, int source)
   if (i >= 0) buffer[i] = 0;
   else fprintf(stderr, "can't read file %d\n", source);
 }
+
 
 void readCommandLine(char *buffer, int bufferLength)
 {
@@ -35,8 +37,15 @@ int main(char **argv,int argc)
     fflush(stdout);
     readCommandLine(line, LINE_BUFFER);
 
-    // Parse the command line.
-    printf("%s", &line);
+    struct LinkedList *sections = parse_sectionise(line);
+    struct Node *section = sections->start;
+    do
+    {
+      struct LinkedList *tokens = parse_tokenise(section->item);
+      execution_run(tokens);
+      section = section->next;
+    }
+    while(section != NULL);
   }
 
   return 0;

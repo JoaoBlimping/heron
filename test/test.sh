@@ -7,8 +7,9 @@ cd "${0%/*}"
 
 # Get to work.
 for filename in *.c; do
-  echo ${filename%%.*}
+  echo "\e[0m\e[7m========${filename%%.*}=============\e[0m"
   gcc $filename -o ${filename%%.*} -g
-  ./${filename%%.*}
-  #rm ${filename%%.*}
+  # the && means that when there is a segmentation fault the file stays in existence so we can use
+  # gdb on it, otherwise it is deleted
+  ./${filename%%.*} && rm ${filename%%.*}
 done

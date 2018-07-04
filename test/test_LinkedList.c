@@ -1,4 +1,4 @@
-#include "Suite.h"
+#include "suite.h"
 #include "../src/LinkedList.c"
 
 
@@ -25,6 +25,7 @@ TEST(appendTest)
 
   LinkedList_append(list, &c);
 
+  ASSERT_EQUAL(LinkedList_size(list), 3);
   ASSERT_EQUAL(*(int *)LinkedList_get(list, 0), a);
   ASSERT_EQUAL(*(int *)LinkedList_get(list, 1), b);
   ASSERT_EQUAL(*(int *)LinkedList_get(list, 2), c);
@@ -34,7 +35,13 @@ TEST(appendTest)
   ASSERT_EQUAL(*(int *)LinkedList_get(list, 1), c);
 
   LinkedList_remove(list,0);
+  ASSERT_EQUAL(LinkedList_size(list), 1);
   ASSERT_EQUAL(*(int *)LinkedList_get(list, 0), c);
+
+  LinkedList_append(list, &b);
+  LinkedList_append(list, &b);
+  LinkedList_remove(list,2);
+  ASSERT_EQUAL(*(int *)LinkedList_get(list, 1), b);
 
 
   LinkedList_free(list);
@@ -65,4 +72,5 @@ int main()
 {
   appendTest();
   stackTest();
+  return 0;
 }

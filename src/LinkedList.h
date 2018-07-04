@@ -1,5 +1,9 @@
+/** @file LinkedList.h
+ * Contains a Linked List implementation. Has structs for the linked list and the nodes in the list,
+ * as well as functions for the handling of the list. */
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
+
 
 /** a node in the linked list which links on to the next node */
 struct Node
@@ -24,7 +28,7 @@ struct LinkedList
  * @return a pointer to your new linked list */
 struct LinkedList *LinkedList_new();
 
-/** frees an allocated linked list and it's nodes
+/** frees an allocated linked list and it's nodes, but not the data items in it's nodes.
  * @param list is the list to be freed */
 void LinkedList_free(struct LinkedList *list);
 
@@ -39,7 +43,6 @@ void *LinkedList_get(struct LinkedList *list, int index);
  * @param list is the list
  * @return the data in that node */
 void *LinkedList_getLast(struct LinkedList *list);
-
 
 /** adds a newly allocated node to the end of the list and puts given data in it
  * @param list is the list to which it must be added
@@ -61,6 +64,11 @@ void *LinkedList_pop(struct LinkedList *list);
  * @param list is the list to which it must be added
  * @param item is the data item to be added to the list */
 void LinkedList_push(struct LinkedList *list, void *item);
+
+/** Tells you the length of the list
+ * @param list isz the list
+ * @return the list's length */
+int LinkedList_size(struct LinkedList *list);
 
 
 #endif

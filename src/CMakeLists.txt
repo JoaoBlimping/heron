@@ -12,7 +12,7 @@ include_directories("${PROJECT_SOURCE_DIR}/src")
 
 
 # add the install targets
-add_executable(heron shell.c)
+add_executable(heron shell.c parse.c LinkedList.c execution.c)
 install (TARGETS heron DESTINATION bin)
 install (FILES "${PROJECT_BINARY_DIR}/src/HeronConfig.h"
          DESTINATION include)
