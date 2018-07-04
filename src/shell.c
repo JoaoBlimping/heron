@@ -2,23 +2,10 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "HeronConfig.h"
+#include "logo.h"
 
 #define LOGO_BUFFER 32
 #define LINE_BUFFER 1024
-
-void logo()
-{
-  char c[LOGO_BUFFER];
-  int logoFile = open("include/logo.txt", O_RDONLY);
-  while (5)
-  {
-    int i = read(logoFile, &c, LOGO_BUFFER);
-    if (i < 1) break;
-    c[i] = 0;
-    printf("%s", c);
-  }
-  printf("Heron Shell Version %d.%d\n", Heron_VERSION_MAJOR, Heron_VERSION_MINOR);
-}
 
 
 
@@ -40,7 +27,7 @@ int main(char **argv,int argc)
 {
   char line[LINE_BUFFER];
 
-  logo();
+  printf(LOGO, Heron_VERSION_MAJOR, Heron_VERSION_MINOR);
 
   while (5)
   {
